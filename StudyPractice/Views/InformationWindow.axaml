@@ -1,0 +1,11 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="StudyPractice.Views.InformationWindow"
+             xmlns:vm="using:StudyPractice.ViewModels"
+             x:DataType="vm:InformationWindowModel">
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                <TextBlock Foreground="White" Text="InformationWindow" />
+                <Button Command="{Binding GoBackToHierarchy}" Content="Назад"/>
+        </StackPanel>
+</UserControl>

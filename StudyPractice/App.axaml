@@ -1,0 +1,54 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="StudyPractice.App"
+             xmlns:local="using:StudyPractice"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <Style Selector="TextBox.MainTextBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontWeight" Value="500"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="CaretBrush" Value="Black"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Style Selector="^:focus /template/ TextBlock#PART_Watermark">
+                <Setter Property="Background" Value="White"/>
+            </Style>
+            <Style Selector="^:pointerover /template/ TextBlock#PART_Watermark">
+                <Setter Property="Background" Value="White"/>
+            </Style>
+            <Style Selector="^:pointerover /template/ Border#PART_BorderElement">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="BorderBrush" Value="White"/>
+            </Style>
+            <Style Selector="^:focus /template/ Border#PART_BorderElement">
+                <Setter Property="BorderBrush" Value="White"/>
+                <Setter Property="Background">
+                    <SolidColorBrush Color="White"/>
+                </Setter>   
+            </Style>
+        </Style>
+        
+        <Style Selector="Button.MainButton">
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="CornerRadius" Value="24"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="#78B24B"/>
+            <Style Selector="^:pointerover /template/ ContentPresenter">
+                <Setter Property="Background" Value="#78B24B"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Style>
+        </Style>
+        <FluentTheme />
+    </Application.Styles>
+</Application>

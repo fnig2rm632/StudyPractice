@@ -1,0 +1,41 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:app="clr-namespace:StudyPractice"
+        xmlns:rxui="clr-namespace:Avalonia.ReactiveUI;assembly=Avalonia.ReactiveUI"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:StudyPractice.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" WindowState="Maximized"
+        x:Class="StudyPractice.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="StudyPractice">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid RowDefinitions="80,*">
+        <Grid ColumnDefinitions="Auto,Auto,*" Background="#E1F4C8">
+            <Grid Margin="15 5 25 5" Grid.Column="0">
+                <Ellipse Fill="#78B24B" Width="70" Height="70" />
+                <TextBlock FontWeight="500" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Text="логотип"/>
+            </Grid>
+            <TextBox Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" Watermark="Введите для поиска" Grid.Column="1" Classes="MainTextBox" Width="1000"/>
+        </Grid>
+        <rxui:RoutedViewHost Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Router="{Binding Router}">
+            <rxui:RoutedViewHost.DefaultContent>
+                <TextBlock Text="Default content"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+            </rxui:RoutedViewHost.DefaultContent>
+            <rxui:RoutedViewHost.ViewLocator>
+                <vm:AppViewLocator/>
+            </rxui:RoutedViewHost.ViewLocator>
+        </rxui:RoutedViewHost>
+    </Grid>
+
+</Window>
