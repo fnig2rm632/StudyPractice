@@ -8,7 +8,8 @@
             <!--Блок с деровом-->
             <ScrollViewer  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Margin="10" Grid.ColumnSpan="{Binding PanelCount}" Background="#D9D9D9" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <Canvas Height="{Binding TreePanelHeight}" Width="{Binding TreePanelWidth}">
-                    <!-- Линии (связи) -->
+                    
+                    <!--Линии (связи)-->
                     <ItemsControl ItemsSource="{Binding Connections}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
@@ -18,32 +19,52 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
+                    <!--Линии (связи)-->
 
-                    <!-- Узлы (кнопки) -->
+                    <!--Узлы (кнопки)-->
                     <ItemsControl ItemsSource="{Binding Nodes}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <Canvas Height="{Binding TreePanelHeight}" Width="{Binding TreePanelWidth}" />  <!-- Важно! -->
+                                <Canvas Height="{Binding TreePanelHeight}" Width="{Binding TreePanelWidth}" /> 
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
             
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Button Content="{Binding Text}" Width="80" Height="40">
+                                <Button Command="{Binding ClickCommand}" Background="{Binding Bg}" Foreground="{Binding Fg}" Width="300" Height="50">
                                     <Button.RenderTransform>
                                         <TranslateTransform X="{Binding X}" Y="{Binding Y}"/>
                                     </Button.RenderTransform>
+                                    <Button.Styles>
+                                        <Style>
+                                            <Style Selector="Button > TextBlock">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                            </Style>
+                                        </Style>
+                                        <Style>
+                                            <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                                <Setter Property="Background" Value="#78B24B"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                            </Style>
+                                        </Style>
+                                    </Button.Styles>
+                                    <TextBlock Text="{Binding Text}"/>
                                 </Button>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
+                    <!--Узлы (кнопки)-->
                 </Canvas>
             </ScrollViewer>
             <!--Блок с деровом-->
             
             <!--Блок с списком сотрудников-->
             <StackPanel Grid.Column="1" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsVisible="{Binding IsVisibleListPeople}" Background="#D9D9D9">
-                
+                <ListBox Background="Red">
+                    
+                </ListBox>
             </StackPanel>
             <!--Блок с списком сотрудников-->
         </Grid>

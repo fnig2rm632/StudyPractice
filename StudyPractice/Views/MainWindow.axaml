@@ -1,5 +1,4 @@
 <Window xmlns="https://github.com/avaloniaui"
-        xmlns:app="clr-namespace:StudyPractice"
         xmlns:rxui="clr-namespace:Avalonia.ReactiveUI;assembly=Avalonia.ReactiveUI"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:StudyPractice.ViewModels"
