@@ -31,7 +31,7 @@
             
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding ClickCommand}" Background="{Binding Bg}" Foreground="{Binding Fg}" Width="300" Height="50">
+                                <Button Command="{Binding ClickCommand}" FontWeight="500" Background="{Binding Bg}" Foreground="{Binding Fg}" Width="300" Height="50">
                                     <Button.RenderTransform>
                                         <TranslateTransform X="{Binding X}" Y="{Binding Y}"/>
                                     </Button.RenderTransform>
@@ -61,14 +61,37 @@
             <!--Блок с деровом-->
             
             <!--Блок с списком сотрудников-->
-            <StackPanel Grid.Column="1" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsVisible="{Binding IsVisibleListPeople}" Background="#D9D9D9">
-                <ListBox Background="Red">
-                    
+            <Grid RowDefinitions="*,140" Grid.Column="1" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsVisible="{Binding IsVisibleListPeople}" Background="#D9D9D9">
+                <ListBox Grid.Row="0" Padding="12" ItemsSource="{Binding Employees}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Padding="20 10" Margin="8" HorizontalAlignment="Stretch" Height="120" Background="#E1F4C8" >
+                                <Grid RowDefinitions="*,1.3*,*,*">
+                                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                        <TextBlock Foreground="Black" Text="{Binding Department.DepartmentName}"/>
+                                        <TextBlock Foreground="Black" Text="-" Margin="10 0"/>
+                                        <TextBlock Foreground="Black" Text="{Binding Position.PositionName}"/>
+                                    </StackPanel>
+                                    <TextBlock Foreground="Black" FontWeight="500" FontSize="20" Grid.Row="1" Text="{Binding EmployeFio}"/>
+                                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                        <TextBlock Foreground="Black" FontWeight="500" FontSize="17" Text="{Binding EmployePhone }"/>
+                                        <TextBlock Foreground="Black" FontWeight="500" FontSize="17" Text="{Binding EmployeEmail }" Margin="10 0 0 0"/>
+                                    </StackPanel>
+                                    <TextBlock Grid.Row="3" Foreground="Black" FontWeight="500" FontSize="17" Text="{Binding Office.OfficeNumder}"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
                 </ListBox>
-            </StackPanel>
+                <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">
+                    <Button Classes="NodeButtonSelected" Margin="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" Command="{Binding GoEmployee}" CornerRadius="0" Width="80" Height="80" Background="#E1F4C8">
+                        <TextBlock Foreground="Black"  FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Text="+"/>
+                    </Button>
+                </DockPanel>
+            </Grid>
             <!--Блок с списком сотрудников-->
         </Grid>
-        <Button HorizontalAlignment="Right" Margin=" 0 0 40 20" Classes="MainButton" Grid.Row="1" Command="{Binding GoInformation}" Content="К информации"/>
+        <Button HorizontalAlignment="Right" Padding="10 " Margin=" 0 0 40 20" Classes="MainButton" Grid.Row="1" Command="{Binding GoInformation}" Content="К информации"/>
     </Grid>
 </UserControl>
 

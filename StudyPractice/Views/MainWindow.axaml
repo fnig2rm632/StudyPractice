@@ -11,18 +11,16 @@
         Title="StudyPractice">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
     <Grid RowDefinitions="80,*">
-        <Grid ColumnDefinitions="Auto,Auto,*" Background="#E1F4C8">
+        <Grid ColumnDefinitions="Auto,*" Background="#E1F4C8">
             <Grid Margin="15 5 25 5" Grid.Column="0">
                 <Ellipse Fill="#78B24B" Width="70" Height="70" />
                 <TextBlock FontWeight="500" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Text="логотип"/>
             </Grid>
-            <TextBox Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" Watermark="Введите для поиска" Grid.Column="1" Classes="MainTextBox" Width="1000"/>
+            <TextBox Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" Watermark="Введите для поиска" Grid.Column="1" Classes="MainTextBox" Margin=" 0 0 25 0" HorizontalAlignment="Stretch"/>
         </Grid>
         <rxui:RoutedViewHost Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Router="{Binding Router}">
             <rxui:RoutedViewHost.DefaultContent>
@@ -36,5 +34,4 @@
             </rxui:RoutedViewHost.ViewLocator>
         </rxui:RoutedViewHost>
     </Grid>
-
 </Window>

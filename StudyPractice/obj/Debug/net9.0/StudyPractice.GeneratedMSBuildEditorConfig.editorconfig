@@ -24,6 +24,9 @@ build_property.EnableCodeStyleSeverity =
 [C:/Users/Gamov/RiderProjects/StudyPractice/StudyPractice/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/Gamov/RiderProjects/StudyPractice/StudyPractice/Views/EmployeeWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/Gamov/RiderProjects/StudyPractice/StudyPractice/Views/HierarchyWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 

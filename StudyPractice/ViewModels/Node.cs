@@ -11,9 +11,9 @@ public class Node
     
     public int Y { get; set; }
     
-    public string Name { get; set; }
+    public required string Name { get; set; }
     
-    public int Weight => Children == null || Children.Count == 0 ?
+    public int Weight => Children.Count == 0 ?
         320 : Children.Count == 1 ? Children.First().Weight : 
             Children.Sum(x => x.Weight);
 }

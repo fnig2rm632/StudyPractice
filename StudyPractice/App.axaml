@@ -39,6 +39,30 @@
             </Style>
         </Style>
         
+        <Style Selector="ListBox">
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Style Selector="^:pointerover /template/ ContentPresenter">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Background" Value="Transparent"/>
+            </Style>
+        </Style>
+        
+        <Style Selector="ListBoxItem">
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Style Selector="^:pointerover /template/ ContentPresenter">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Background" Value="Transparent"/>
+            </Style>
+            <Style Selector="^:selected /template/ ContentPresenter">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Style>
+        </Style>
+        
         <Style Selector="Button.MainButton">
             <Setter Property="Padding" Value="8"/>
             <Setter Property="CornerRadius" Value="24"/>
@@ -62,8 +86,6 @@
         
         <Style Selector="Button.NodeButtonSelected">
             <Setter Property="CornerRadius" Value="0"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Background" Value="#78B24B"/>
             <Style Selector="^:pointerover /template/ ContentPresenter">
                 <Setter Property="Background" Value="#78B24B"/>
                 <Setter Property="Foreground" Value="White"/>

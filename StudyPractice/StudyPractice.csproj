@@ -46,5 +46,9 @@
         <DependentUpon>HierarchyWindow.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Views\EmployeeWindow.axaml.cs">
+        <DependentUpon>EmployeeWindow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 </Project>
