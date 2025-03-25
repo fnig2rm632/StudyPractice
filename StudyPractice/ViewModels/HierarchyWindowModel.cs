@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Linq;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Media;
 using Microsoft.EntityFrameworkCore;
 using ReactiveUI;
@@ -47,8 +49,23 @@ public class HierarchyWindowModel : ReactiveObject, IRoutableViewModel
 
     public ReactiveCommand<Unit, IRoutableViewModel> GoInformation { get; }
     public ReactiveCommand<Unit, IRoutableViewModel> GoEmployee { get; }
+    public ReactiveCommand<Unit, Unit> GoEditEmployee { get; }
 
     public IScreen HostScreen { get; }
+
+    #endregion
+
+    #region SelectedEmploe
+
+    private Employee _selectedEmployee;
+
+    public Employee SelectedEmployee
+    {
+        get => _selectedEmployee;
+        set => this.RaiseAndSetIfChanged(ref _selectedEmployee, value);
+    }
+    
+    public Interaction<Employee, Unit> EditEmployeeInteraction { get; }
 
     #endregion
 
@@ -106,13 +123,27 @@ public class HierarchyWindowModel : ReactiveObject, IRoutableViewModel
         HostScreen = screen;
         
         GoEmployee = ReactiveCommand.CreateFromObservable(() =>
-            screen.Router.Navigate.Execute(new EmployeeWindowViewModel(screen)));
+            screen.Router.Navigate.Execute(new EmployeeWindowViewModel(screen){Mode = EditMode.Add}));
         
         GoInformation = ReactiveCommand.CreateFromObservable(() =>
             screen.Router.Navigate.Execute(new InformationWindowModel(screen)));
         
+        GoEditEmployee = ReactiveCommand.Create(GoEditEmployeeMetod);
+        
+        this.WhenAnyValue(x => x.SelectedEmployee)
+            .Where(emp => emp != null)
+            .Subscribe(_ => GoEditEmployee.Execute().Subscribe());
+        
         DrawTree();
     }
+    
+    
+    // Переход редактирование Emplaeer
+    private void GoEditEmployeeMetod()
+    {
+        HostScreen.Router.Navigate.Execute(new EmployeeWindowViewModel(HostScreen){Mode = EditMode.Edit, EmployeeSelect = _selectedEmployee});
+    }
+    
 
     // Класс кнопки ноды
     public class TreeNodeViewModel : ReactiveObject

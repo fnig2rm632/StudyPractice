@@ -4,14 +4,66 @@
              xmlns:vm="using:StudyPractice.ViewModels"
              Background="White"
              x:DataType="vm:EmployeeWindowViewModel">
-    <Grid ColumnDefinitions="*,50,*" RowDefinitions="100,*" Margin="50" Background="#D9D9D9">
-        <Grid Grid.Column="0" Grid.Row="1" Background="White" Margin="20">
-            
-        </Grid>
-        <Grid Grid.Column="1" Grid.Row="1" Background="White" />
-        <Grid Grid.Column="2" Grid.Row="1" Background="White" Margin="20">
-            <Button Command="{Binding GoHierarchy}">dsfds</Button>
-        </Grid>
+    
+    
+    <Grid ColumnDefinitions="*,*" RowDefinitions="*,100" Margin="50">
+        <Border Grid.Column="0" Grid.Row="0" BorderBrush="#D9D9D9" BorderThickness="20" Padding="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid Grid.ColumnDefinitions="*,2*" Grid.RowDefinitions="*,*,*,*,*,*,*">
+                <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontSize="20" Margin="20 0 0 0 " Text="ФИО"/>
+                <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontSize="20" Margin="20 0 0 0 " Text="Мобильный телефон"/>
+                <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontSize="20" Margin="20 0 0 0 " Text="Электронная почта"/>
+                <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontSize="20" Margin="20 0 0 0 " Text="День рождения"/>
+                <TextBlock Grid.Column="0" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontSize="20" Margin="20 0 0 0 " Text="Помощник"/>
+                <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontSize="20" Margin="20 0 0 0 " Text="Руководитель"/>
+                <TextBlock Grid.Column="0" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontSize="20" Margin="20 0 0 0 " Text="Кабинет"/>
+                <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0 0 50 0" VerticalAlignment="Center" Height="27" Text="{Binding EmployeeSelect.EmployeFio, Mode=TwoWay}"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" IsVisible="{Binding Error1, Mode=TwoWay}" Foreground="Red" FontSize="15" FontWeight="600">Заполните поле</TextBlock>
+                <TextBox MaxLength="20" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 0 50 0" VerticalAlignment="Center" Height="27" Text="{Binding EmployeeSelect.EmployePhone}"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" IsVisible="{Binding Error2}"  Foreground="Red" FontSize="15" FontWeight="600">Заполните поле</TextBlock>
+                <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" Margin="0 0 50 0" VerticalAlignment="Center" Height="27" Text="{Binding EmployeeSelect.EmployeEmail}"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" IsVisible="{Binding Error3}"  Foreground="Red" FontSize="15" FontWeight="600">Заполните поле</TextBlock>
+                <CalendarDatePicker Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" Margin="0 0 50 0" VerticalAlignment="Center" Height="27" SelectedDate="{Binding SelectedDateTime, Mode=TwoWay}"/>
+                <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" IsVisible="{Binding Error4}"  Foreground="Red" FontSize="15" FontWeight="600">Заполните поле</TextBlock>
+                <ComboBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" Margin="0 0 50 0" VerticalAlignment="Center" Height="27" ItemsSource="{Binding Staffs}" SelectedItem="{Binding EmployeAssistant}" DisplayMemberBinding="{Binding EmployeFio}" />
+                <ComboBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch" Margin="0 0 50 0" VerticalAlignment="Center" Height="27" ItemsSource="{Binding Staffs}" SelectedItem="{Binding EmployeChief}" DisplayMemberBinding="{Binding EmployeFio}" />
+                <ComboBox Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" Margin="0 0 50 0" VerticalAlignment="Center" Height="27" ItemsSource="{Binding Offices}" SelectedItem="{Binding SelectedOffice}" DisplayMemberBinding="{Binding OfficeNumder}"/>
+                <TextBlock Grid.Column="1" Grid.Row="6" VerticalAlignment="Bottom" IsVisible="{Binding Error5}"  Foreground="Red" FontSize="15" FontWeight="600">Заполните поле</TextBlock>
+            </Grid>
+        </Border>
+        <Border Grid.Column="1" Grid.Row="0" BorderBrush="#D9D9D9" BorderThickness="20" Padding="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,*">
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Button Margin="0 0 10 0" Classes="ButtonEmploy">Прошлое</Button>
+                    <Button Margin="0 0 10 0" Classes="ButtonEmploy">Текущие</Button>
+                    <Button Margin="0 0 10 0" Classes="ButtonEmploy">Будущие</Button>
+                </StackPanel>
+                <StackPanel Margin="0 50 0 0" Grid.Row="1">
+                    <TextBlock Margin="0 5" FontSize="20" Foreground="Black">Обучение</TextBlock>
+                    <ListBox HorizontalAlignment="Stretch" Margin="0 5" Height="70" Background="#D9D9D9">
+                        
+                    </ListBox>
+                </StackPanel>
+                <StackPanel Grid.Row="2">
+                    <TextBlock FontSize="20" Margin="0 5" Foreground="Black">Отгулы</TextBlock>
+                    <ListBox HorizontalAlignment="Stretch"  Height="70" Background="#D9D9D9">
+                        
+                    </ListBox>
+                </StackPanel>
+                <StackPanel  Grid.Row="3">
+                    <TextBlock FontSize="20" Foreground="Black" Margin="0 5">Отпуска</TextBlock>
+                    <ListBox HorizontalAlignment="Stretch" Height="70" Background="#D9D9D9">
+                        
+                    </ListBox>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <StackPanel Orientation="Horizontal">
+                <Button Height="40" Width="200" Classes="MainButton" Content="Изменить" IsVisible="{Binding Mode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Edit}" Command="{Binding SaveCommand}"/>
+                <Button Height="40" Width="200" Classes="MainButton" Content="Добавить"  IsVisible="{Binding Mode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Add}" Command="{Binding AddCommand}"/>
+                <Button Height="40" Width="200" Classes="MainButton" Content="Назад" Command="{Binding BackCommand}"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
              

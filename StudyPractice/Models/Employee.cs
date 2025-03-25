@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace StudyPractice.Models;
 
@@ -19,7 +20,7 @@ public partial class Employee
 
     public string? EmployeEmail { get; set; }
 
-    public DateOnly? EmployeBirth { get; set; }
+    public DateOnly EmployeBirth { get; set; }
 
     public int? EmployeAssistentId { get; set; }
 

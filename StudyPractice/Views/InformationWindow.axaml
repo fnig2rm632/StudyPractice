@@ -1,11 +1,77 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="StudyPractice.Views.InformationWindow"
-             xmlns:vm="using:StudyPractice.ViewModels"
+             xmlns:vm="using:StudyPractice.ViewModels" Background="White"
              x:DataType="vm:InformationWindowModel">
-        <StackPanel HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-                <TextBlock Foreground="White" Text="InformationWindow" />
-                <Button Command="{Binding GoBackToHierarchy}" Content="Назад"/>
+    <Grid Margin="50" ColumnDefinitions="300,20,*" RowDefinitions="140,30,4.8*,3*,*">
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
+            <TextBlock Foreground="Black" FontSize="21" FontWeight="700">Coтрудники</TextBlock>
+            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding EmployeeSelect}" Margin="0 5 0 0 " Height="110" HorizontalAlignment="Stretch">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="8" Background="#78B24B" Height="110" Width="160" Margin="0 0 12 0">
+                            <Grid RowDefinitions="3*,*,*,1.3*,2*">
+                                <TextBlock Grid.Row="0" TextWrapping="Wrap" Foreground="White" Text="{Binding EmployeFio}" />
+                                <TextBlock Grid.Row="1" FontSize="10" FontWeight="200" Foreground="White" Text="{Binding Position.PositionName}" />
+                                <TextBlock Grid.Row="2" FontSize="10" FontWeight="200" Foreground="White" Text="{Binding EmployeEmail}" />
+                                <TextBlock Grid.Row="3" VerticalAlignment="Center" FontSize="12" FontWeight="200" Foreground="White" Text="{Binding EmployePhone}" />
+                                <Grid Grid.Row="4" Margin="0 10 0 0" ColumnDefinitions="*,Auto">
+                                    <TextBlock Grid.Column="0" FontSize="12" FontWeight="200" Foreground="White" Text="{Binding EmployeBirth}" />
+                                    <Image Height="10" Grid.Column="1" Source="/Assets/Save.png"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="2">
+            <TextBlock Foreground="Black" FontSize="21" FontWeight="700">Календарь событий</TextBlock>
+            <Calendar BorderBrush="White" Foreground="Black" Background="#78B24B" >
+               <Calendar.Styles>
+                   <Style Selector="CalendarItem">
+                       <Setter Property="Background" Value="DarkBlue"/>
+                   </Style>
+                   <Style Selector="CalendarDayButton /template/Border">
+                       
+                       <Setter Property="CornerRadius" Value="30"/>
+                   </Style>
+                   <Style Selector="CalendarDayButton">
+                       <Setter Property="Background" Value="White"/>
+                       <Setter Property="Foreground" Value="Black"/>
+                   </Style>
+                   <Style Selector="CalendarDayButton:selected /template/Border">
+                       <Setter Property="BorderBrush" Value="#78B24B"/>
+                   </Style>
+                   <Style Selector="CalendarDayButton:today /template/Border">
+                       <Setter Property="BorderBrush" Value="#78B24B"/>
+                   </Style>
+                   <Style Selector="CalendarDayButton:today">
+                       <Setter Property="Opacity" Value="0"/>
+                   </Style>
+               </Calendar.Styles> 
+            </Calendar>
+        </StackPanel>
+        <StackPanel  Grid.Column="0" Grid.Row="3" Grid.RowSpan="2">
+            <TextBlock Foreground="Black" FontSize="21" FontWeight="700">События</TextBlock>
+            <ListBox Background="Black" HorizontalAlignment="Stretch" Height="300">
+                
+            </ListBox>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Grid.RowSpan="2" Grid.Row="2">
+            <TextBlock Foreground="Black" FontSize="21" FontWeight="700">Новости</TextBlock>
+            <Button Command="{Binding ProcessTextCommand}" CommandParameter="Пример текста">
+                Отправить текст
+            </Button>
+            <ListBox Background="Black" HorizontalAlignment="Stretch" Height="550">
+                
+            </ListBox>
+        </StackPanel>
+        <Button Grid.Column="2" HorizontalAlignment="Right" Padding="10 " Margin=" 0 0 40 20" VerticalAlignment="Bottom" Classes="MainButton" Grid.Row="4" Command="{Binding GoBackToHierarchy}" Content="К Дереву"/>
+    </Grid>
 </UserControl>

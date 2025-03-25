@@ -7,6 +7,8 @@ namespace StudyPractice.ViewModels;
 
 public class MainWindowViewModel : ReactiveObject, IScreen
 {
+    public InformationWindowModel UserControlStart { get; }
+
     private string _inputText = null!;
 
     public string InputText
@@ -20,15 +22,16 @@ public class MainWindowViewModel : ReactiveObject, IScreen
     
     public MainWindowViewModel()
     {
-        Router.Navigate.Execute(new HierarchyWindowModel(this));
+        UserControlStart = new InformationWindowModel(this);
+        Router.Navigate.Execute(UserControlStart);
         
         ProcessTextCommand = ReactiveCommand.Create<string>(text =>
         {
             Console.WriteLine($"Текст изменён: {text}");
+            UserControlStart.ProcessTextCommand.Execute(text).Subscribe();
         });
         
         this.WhenAnyValue(x => x.InputText)
-            .Where(text => !string.IsNullOrWhiteSpace(text)) 
             .InvokeCommand(ProcessTextCommand);
     }
     

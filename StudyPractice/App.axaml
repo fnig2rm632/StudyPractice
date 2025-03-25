@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="StudyPractice.App"
              xmlns:local="using:StudyPractice"
+             xmlns:models="clr-namespace:StudyPractice.Models"
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
@@ -9,6 +10,10 @@
         <local:ViewLocator/>
     </Application.DataTemplates>
   
+    <Application.Resources>
+    <models:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
+    </Application.Resources>
+             
     <Application.Styles>
         <Style Selector="TextBox.MainTextBox">
             <Setter Property="Background" Value="White"/>
@@ -67,7 +72,25 @@
             <Setter Property="Padding" Value="8"/>
             <Setter Property="CornerRadius" Value="24"/>
             <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Background" Value="#78B24B"/>
+            <Setter Property="Background" Value="#78B24B"/>           
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="20 0"/>
+            <Style Selector="^:pointerover /template/ ContentPresenter">
+                <Setter Property="Background" Value="#78B24B"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Style>
+        </Style>
+        
+        <Style Selector="Button.ButtonEmploy">
+            <Setter Property="Padding" Value="30 8"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="#78B24B"/>           
+            <Setter Property="Height" Value="40"/>           
+            <Setter Property="FontSize" Value="20"/>           
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="20 0"/>
             <Style Selector="^:pointerover /template/ ContentPresenter">
                 <Setter Property="Background" Value="#78B24B"/>
                 <Setter Property="Foreground" Value="Black"/>
@@ -91,6 +114,6 @@
                 <Setter Property="Foreground" Value="White"/>
             </Style>
         </Style>
-        <FluentTheme />
+        <FluentTheme/>
     </Application.Styles>
 </Application>

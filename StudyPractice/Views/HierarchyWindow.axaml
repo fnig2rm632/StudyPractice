@@ -6,7 +6,7 @@
     <Grid RowDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
         <Grid Grid.Row="0" ColumnDefinitions="*,*" Margin="30 30 30 10">
             <!--Блок с деровом-->
-            <ScrollViewer  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Margin="10" Grid.ColumnSpan="{Binding PanelCount}" Background="#D9D9D9" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Offset="3000,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Margin="10" Grid.ColumnSpan="{Binding PanelCount}" Background="#D9D9D9" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <Canvas Height="{Binding TreePanelHeight}" Width="{Binding TreePanelWidth}">
                     
                     <!--Линии (связи)-->
@@ -62,7 +62,7 @@
             
             <!--Блок с списком сотрудников-->
             <Grid RowDefinitions="*,140" Grid.Column="1" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsVisible="{Binding IsVisibleListPeople}" Background="#D9D9D9">
-                <ListBox Grid.Row="0" Padding="12" ItemsSource="{Binding Employees}">
+                <ListBox  Grid.Row="0" Padding="12"  ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border Padding="20 10" Margin="8" HorizontalAlignment="Stretch" Height="120" Background="#E1F4C8" >
